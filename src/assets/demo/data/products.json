@@ -118,13 +118,13 @@
 				"fecha_prestamo": "",
 				"observacionesPresta": "",
 				"fecha_devolucion": "",
-				"responsable": "Juan",
-				"ubicacion": "Salon 202",
+				"responsable": "Felipe",
+				"ubicacion": "Salon 106",
 				"estado_actual": "",
 				"estado": "Disponible",
-				"price": "800000",
-				"residual_value": "200000",
-				"useful_life": "3"
+				"price": "300000",
+				"residual_value": "150000",
+				"useful_life": "2"
 			},
 			{
 				"id": "1003",
