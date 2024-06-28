@@ -1,0 +1,78 @@
+<div class="poliza-container">
+    <h1>Detalles de la Póliza</h1>
+    <div class="form-section">
+        <h2>Empresa Aseguradora</h2>
+        <div class="form-group">
+            <label for="aseguradoraNombre">Nombre:</label>
+            <input id="aseguradoraNombre" type="text" [(ngModel)]="poliza.aseguradora.nombre" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="aseguradoraNit">NIT:</label>
+            <input id="aseguradoraNit" type="text" [(ngModel)]="poliza.aseguradora.nit" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="aseguradoraTelefono">Teléfono:</label>
+            <input id="aseguradoraTelefono" type="text" [(ngModel)]="poliza.aseguradora.telefono" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="aseguradoraContacto">Contacto:</label>
+            <input id="aseguradoraContacto" type="text" [(ngModel)]="poliza.aseguradora.contacto" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="aseguradoraCorreo">Correo:</label>
+            <input id="aseguradoraCorreo" type="email" [(ngModel)]="poliza.aseguradora.correo" pInputText />
+        </div>
+    </div>
+    <div class="form-section">
+        <div class="form-group">
+            <label for="numero">Número de Póliza:</label>
+            <input id="numero" type="text" [(ngModel)]="poliza.numero" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="fechaExpedicion">Fecha de Expedición:</label>
+            <input id="fechaExpedicion" type="date" [(ngModel)]="poliza.fechaExpedicion" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="vigenciaInicio">Vigencia Inicio:</label>
+            <input id="vigenciaInicio" type="date" [(ngModel)]="poliza.vigencia.inicio" pInputText />
+        </div>
+        <div class="form-group">
+            <label for="vigenciaFin">Vigencia Fin:</label>
+            <input id="vigenciaFin" type="date" [(ngModel)]="poliza.vigencia.fin" pInputText />
+        </div>
+    </div>
+    <div class="form-section">
+        <div class="form-group">
+            <label for="descripcion">Descripción de la Póliza:</label>
+            <textarea id="descripcion" [(ngModel)]="poliza.descripcion" pInputTextarea></textarea>
+        </div>
+        <div class="form-group">
+            <label for="cubrimientos">Cubrimientos:</label>
+            <p-multiSelect [options]="cubrimientosOptions" [(ngModel)]="poliza.cubrimientos" display="chip"  [showClear]="true" ></p-multiSelect>
+        </div>
+        <div class="form-group">
+            <label for="excepciones">Excepciones:</label>
+            <textarea id="excepciones" [(ngModel)]="poliza.excepciones" pInputTextarea></textarea>
+        </div>
+    </div>
+    <div class="form-section">
+        <h2>Ítems Cubiertos</h2>
+        <p-table [value]="products">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Ítems</th>
+                    <th>Cubiertos</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td><p-checkbox [(ngModel)]="product.cubierto"></p-checkbox></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="form-actions">
+        <button pButton type="button" label="Guardar Póliza" (click)="savePoliza()"></button>
+    </div>
+</div>

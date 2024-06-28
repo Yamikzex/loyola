@@ -1,0 +1,65 @@
+<div class="div_back">
+    <div class="col-12">
+        <div class="card px-6 py-6" style="padding: 2rem; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <div class="form-container">
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="No_inventario" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Número de inventario</label>
+                    <input type="text" pInputText id="No_inventario" [(ngModel)]="noInventario" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="ID_proveedor" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">ID</label>
+                    <input type="text" pInputText id="ID_proveedor" [(ngModel)]="product.idProveedor" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Name_proveedor" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Nombre</label>
+                    <input type="text" pInputText id="Name_proveedor" [(ngModel)]="product.nombreProveedor" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Telefono_proveedor" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Teléfono</label>
+                    <input type="text" pInputText id="Telefono_proveedor" [(ngModel)]="product.telefonoProveedor" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Direccion_proveedor" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Dirección</label>
+                    <input type="text" pInputText id="Direccion_proveedor" [(ngModel)]="product.direccionProveedor" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Pais_proveedor" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">País</label>
+                    <input type="text" pInputText id="Pais_proveedor" [(ngModel)]="product.paisProveedor" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Ciudad_proveedor" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Ciudad</label>
+                    <input type="text" pInputText id="Ciudad_proveedor" [(ngModel)]="product.ciudadProveedor" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Factura_compra" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Factura de compra</label>
+                    <input type="text" pInputText id="Factura_compra" [(ngModel)]="product.facturaCompra" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Fecha_compra" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Fecha de compra</label>
+                    <input type="date" pInputText id="Fecha_compra" [(ngModel)]="product.fechaCompra" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Valor_iva" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Valor con IVA</label>
+                    <input type="text" pInputText id="Valor_iva" [(ngModel)]="product.valorIva" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Garantia" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Garantía</label>
+                    <input type="text" pInputText id="Garantia" [(ngModel)]="product.garantia" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Fecha_inicioGarantia" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Fecha de inicio de garantía</label>
+                    <input type="date" pInputText id="Fecha_inicioGarantia" [(ngModel)]="product.fechaInicioGarantia" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Fecha_finGarantia" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Fecha de fin de garantía</label>
+                    <input type="date" pInputText id="Fecha_finGarantia" [(ngModel)]="product.fechaFinGarantia" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+            </div>
+            
+            <div class="p-col-12 p-text-center">
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="save()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
+                <button pButton pRipple label="Buscar" icon="pi pi-search" class="p-button-text" (click)="search()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['code','name','marca','category']" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando desde el item {first} hasta el item {last} de {totalRecords} items" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Administrador de préstamos</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="code">Número de inventario <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
+                        <th>Imagen</th>
+                        <th pSortableColumn="marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
+                        <th pSortableColumn="category">Categoría <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="fecha_prestamo">Fecha de préstamo <p-sortIcon field="fecha_prestamo"></p-sortIcon></th>
+                        <th pSortableColumn="fecha_devolucion">Fecha de devolución <p-sortIcon field="fecha_devolucion"></p-sortIcon></th>
+                        <th pSortableColumn="prestamoStatus">Estado <p-sortIcon field="prestamoStatus"></p-sortIcon></th>
+                        <th pSortableColumn="personaPresta">Prestado a <p-sortIcon field="personaPresta"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Número de inventario</span>
+                            {{product.code || product.id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Nombre</span>
+                            {{product.name}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Imagen</span>
+                            <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Marca</span>
+                            {{product.marca}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Categoría</span>
+                            {{product.category}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Fecha de préstamo</span>
+                            {{product.fecha_prestamo}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Fecha de devolución</span>
+                            {{product.fecha_devolucion}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Estado</span>
+                            <span [ngClass]="{'estado-prestado': product.estadoPresta === 'PRESTADO', 'estado-disponible': product.estadoPresta === 'DISPONIBLE'}">{{product.estadoPresta}}</span>
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Prestado a</span>
+                            {{product.nombrePresta}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2" [ngClass]="{'p-button-warning': product.estadoPresta === 'PRESTADO', 'p-button-success': product.estadoPresta === 'DISPONIBLE'}" (click)="editProduct(product)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" [header]="getHeaderTitle()" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
+                <div class="field">
+                    <label for="ID_responsable">Cédula de a quien se presta</label>
+                    <input type="text" pInputText id="ID_responsable" [(ngModel)]="product.cedulaPresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.cedulaPresta}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.cedulaPresta">ID del responsable es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="Nombre_responsable">Nombre completo de a quien se presta</label>
+                    <input type="text" pInputText id="Nombre_responsable" [(ngModel)]="product.nombrePresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.nombrePresta}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.nombrePresta">Nombre del responsable es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="Cargo_responsable">Cargo de a quien se presta</label>
+                    <input type="text" pInputText id="Cargo_responsable" [(ngModel)]="product.cargoPresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.cargoPresta}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.cargoPresta">Cargo del responsable es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="Fecha_asignacion">Fecha de préstamo</label>
+                    <input type="date" pInputText id="Fecha_asignacion" [(ngModel)]="product.fecha_prestamo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_prestamo}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fecha_prestamo">Fecha de asignación es requerida.</small>
+                </div>
+                <div class="field">
+                    <label for="Observaciones">Observaciones</label>
+                    <textarea id="Observaciones" pInputTextarea [(ngModel)]="product.observacionesPresta" required rows="3" cols="20"></textarea>
+                </div>
+                <div class="field">
+                    <label for="Fecha_devolucion">Fecha de devolución</label>
+                    <input type="date" pInputText id="Fecha_devolucion" [(ngModel)]="product.fecha_devolucion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_devolucion}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fecha_devolucion">Fecha de devolución es requerida.</small>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

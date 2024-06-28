@@ -1,0 +1,73 @@
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+}
+
+.textmain-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  margin-top: 100px;
+  background-color: rgb(255, 255, 255);
+}
+
+.title {
+  font-family: 'Arial', sans-serif;
+  font-size: 5em;
+  font-weight: bold;
+  color: #ff5722; /* Color del título */
+  margin-bottom: 20px;
+}
+
+.subtitle{
+  font-size: 25px;
+  color: rgb(61, 61, 61);
+}
+
+.intro-logo {
+  width: 300px; /* Ajustado el ancho */
+  height: 150;
+  margin: 10px; /* Ajustado el margen para mayor separación */
+}
+
+.intro-logo2 {
+  width: 350px; /* Ajustado el ancho */
+  height: auto;
+  margin: 10px; /* Ajustado el margen para mayor separación */
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 45px;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #ff5722; /* Color del botón */
+  color: white;
+  border: none;
+  border-radius: 7px; /* Bordes redondeados */
+  transition: background-color 0.3s;
+
+}
+
+button:hover {
+  background-color: #e64a19; /* Color del botón al pasar el ratón */
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-left: 45px;
+}
+
+.contact-text {
+  margin-bottom: 20px;
+}

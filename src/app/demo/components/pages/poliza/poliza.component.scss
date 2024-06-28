@@ -1,0 +1,68 @@
+.poliza-container {
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .form-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+
+            label {
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+            }
+
+            input, textarea, p-multiSelect, p-checkbox {
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            textarea {
+                resize: vertical;
+            }
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+
+        button {
+            padding: 0.5rem 2rem;
+            font-size: 1.2rem;
+        }
+    }
+    .form-actions{
+        margin-right: 100px;
+    }
+}
+::ng-deep .p-multiselect-panel {
+    width: 400px; /* Ajusta el ancho según tus necesidades */
+}
+
+.p-chips-token {
+    white-space: normal; /* Asegura que el contenido completo del chip sea visible */
+}

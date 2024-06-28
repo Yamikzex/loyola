@@ -1,0 +1,64 @@
+@media screen and (max-width: 991px) {
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+    
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .form-grid {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-grid label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    
+    .p-inputtext, 
+    .p-inputtextarea, 
+    .p-dropdown {
+        width: 100%;
+    }
+    
+    img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .p-text-center {
+        text-align: center;
+    }
+    
+    .p-button-text {
+        margin: 0 0.5rem;
+        background-color: #007ad9;
+        color: white;
+    }
+    
+    .p-button-text:hover {
+        background-color: #005bb5;
+        color: white;
+    }
+    
+    .p-button-text:active {
+        background-color: #003f8f;
+        color: white;
+    }
+    
+}

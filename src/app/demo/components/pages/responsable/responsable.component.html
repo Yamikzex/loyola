@@ -1,0 +1,42 @@
+<div class="div_back">
+    <div class="col-12">
+        <div class="card px-6 py-6" style="padding: 2rem; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="No_inventario" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Número de inventario</label>
+                    <input type="text" pInputText id="No_inventario" [(ngModel)]="noInventario" required style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="ID_responsable" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">ID del responsable</label>
+                    <input type="text" pInputText id="ID_responsable" [(ngModel)]="product.ID_responsable" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Nombre_responsable" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Nombre completo del responsable</label>
+                    <input type="text" pInputText id="Nombre_responsable" [(ngModel)]="product.Nombre_responsable" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Cargo_responsable" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Cargo del responsable</label>
+                    <input type="text" pInputText id="Cargo_responsable" [(ngModel)]="product.Cargo_responsable" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Fecha_asignacion" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Fecha de asignación</label>
+                    <input type="date" pInputText id="Fecha_asignacion" [(ngModel)]="product.fechaAsignacion" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;" />
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Observaciones" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Observaciones</label>
+                    <textarea id="Observaciones" pInputTextarea [(ngModel)]="product.Observaciones" required rows="3" cols="20" style="width: 100%; box-sizing: border-box;"></textarea>
+                </div>
+                <div class="field" style="margin-bottom: 1.5rem;">
+                    <label for="Fecha_devolucion" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Fecha de devolución</label>
+                    <input type="date" pInputText id="Fecha_devolucon" [(ngModel)]="product.fechaDevolucion" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;" />
+                </div>
+            </div>
+
+            <div class="p-col-12 p-text-center">
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="save()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
+                <button pButton pRipple label="Buscar" icon="pi pi-search" class="p-button-text" (click)="search()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
+            </div>
+
+        </div>
+    </div>
+</div>
