@@ -15,13 +15,14 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando desde el item {first} hasta el item {last} de {totalRecords} items" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['code','name','price','category','rating','garantiaProveedor','insuranceStatus','inventoryGroup']"
+            [paginator]="true" [rowsPerPageOptions]="[5,10,15,20]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando desde el item {first} hasta el item {last} de {totalRecords} items" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Administrador de inventarios</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
                         </span>
                     </div>
                 </ng-template>
@@ -36,8 +37,8 @@
                         <th pSortableColumn="price">Marca <p-sortIcon field="price"></p-sortIcon></th>
                         <th pSortableColumn="category">Categoría <p-sortIcon field="category"></p-sortIcon></th>
                         <th pSortableColumn="rating">Fecha de adquisición <p-sortIcon field="rating"></p-sortIcon></th>
-                        <th pSortableColumn="garantiaStatus">Garantía del proveedor <p-sortIcon field="garantiaStatus"></p-sortIcon></th>
-                        <th pSortableColumn="insuranceStatus">Seguro <p-sortIcon field="insuranceyStatus"></p-sortIcon></th>
+                        <th pSortableColumn="garantiaProveedor">Garantía del proveedor <p-sortIcon field="garantiaProveedor"></p-sortIcon></th>
+                        <th pSortableColumn="insuranceStatus">Póliza <p-sortIcon field="insuranceyStatus"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -68,14 +69,14 @@
                             {{product.fecha_adquisicion}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Garantía del proveedor</span>
-                            <span [class]="'product-badge status-' + (product.garantia_proveedor ? product.garantia_proveedor.toLowerCase() : '')">{{product.garantia_proveedor}}</span>
+                            <span [class]="'product-badge.status-activo' + (product.garantiaProveedor ? product.garantiaProveedor.toLowerCase() : '')">{{product.garantiaProveedor}}</span>
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Seguro</span>
                             <span [class]="'product-badge status-' + (product.insuranceStatus ? product.insuranceStatus.toLowerCase() : '')">{{product.insuranceStatus}}</span>
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2" background-color = "#9333EA" (click)="editProduct(product)"></button>
                             </div>
                         </td>
                     </tr>
@@ -307,27 +308,5 @@
             </ng-template>
         </p-dialog>
 
-
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
-            </ng-template>
-        </p-dialog>
-
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
-            </ng-template>
-        </p-dialog>
     </div>
 </div>

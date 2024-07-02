@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service'; 
 
@@ -25,6 +25,11 @@ export class InfoPlacaComponent {
     ];
 
     constructor(private productService: ProductService, private messageService: MessageService) { }
+
+    ngOnInit() {
+        // Cargar productos desde el servicio
+        this.productService.getProducts().then(data => this.products = data);
+    }
 
     onFileChange(event: any) {
         const file = event.target.files[0];
@@ -56,26 +61,26 @@ export class InfoPlacaComponent {
 
     search() {
         console.log('Search for product');
-        const foundProduct = this.products.find(p => p.id === this.noInventario);
+        const foundProduct = this.products.find(p => p.code === this.noInventario);
         if (foundProduct) {
-            this.product = { ...foundProduct };
-            console.log('Product found:', this.product);
+        this.product = { ...foundProduct };
+        console.log('Product found:', this.product);
         } else {
-            console.log('Product not found');
-            // Opcional: mostrar un mensaje de error al usuario
+        console.log('Product not found');
         }
     }
 
-    findIndexById(id: string): number {
-        let index = -1;
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
-                index = i;
-                break;
-            }
+  findIndexById(id: string): number {
+    let index = -1;
+    for (let i = 0; i < this.products.length; i++) {
+        if (this.products[i].id === id) {
+            index = i;
+            break;
         }
-        return index;
     }
+
+    return index;
+  }
 
     createId(): string {
         let id = '';

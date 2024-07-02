@@ -47,11 +47,6 @@
                     <input type="date" pInputText id="Fecha_adquisicion" [(ngModel)]="product.fechaAdquisicion" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;"/>
                 </div>
 
-                <div class="field" style="margin-bottom: 1.5rem;">
-                    <label for="Fecha_salida" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Fecha de salida de inventario</label>
-                    <input type="date" pInputText id="Fecha_salida" [(ngModel)]="product.fechaSalida" class="p-inputtext p-component" style="width: 100%; box-sizing: border-box;"/>
-                </div>
-
                 <div class="field p-text-center" style="margin-bottom: 1.5rem;">
                     <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="save()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
                     <button pButton pRipple label="Buscar" icon="pi pi-search" class="p-button-text" (click)="search()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>

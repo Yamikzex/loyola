@@ -46,7 +46,6 @@ export class ProveedorComponent implements OnInit {
       console.log('Product found:', this.product);
     } else {
       console.log('Product not found');
-      // Opcional: mostrar un mensaje de error al usuario
     }
   }
   

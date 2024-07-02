@@ -25,7 +25,8 @@ import { ToastModule } from 'primeng/toast';
         MultiSelectModule,
         CheckboxModule,
         DialogModule, // Asegúrate de agregar DialogModule aquí
-        ToastModule
+        ToastModule,
+
     ],
     declarations: [PolizaComponent],
     providers: [MessageService]

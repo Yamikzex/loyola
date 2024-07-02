@@ -22,7 +22,7 @@
                         <th pSortableColumn="marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
                         <th pSortableColumn="category">Categoría <p-sortIcon field="category"></p-sortIcon></th>
                         <th pSortableColumn="fecha_prestamo">Fecha de préstamo <p-sortIcon field="fecha_prestamo"></p-sortIcon></th>
-                        <th pSortableColumn="fecha_devolucion">Fecha de devolución <p-sortIcon field="fecha_devolucion"></p-sortIcon></th>
+                        <th pSortableColumn="fecha_devolucion">Fecha estimada de devolución <p-sortIcon field="fecha_devolucion"></p-sortIcon></th>
                         <th pSortableColumn="prestamoStatus">Estado <p-sortIcon field="prestamoStatus"></p-sortIcon></th>
                         <th pSortableColumn="personaPresta">Prestado a <p-sortIcon field="personaPresta"></p-sortIcon></th>
                         <th></th>
@@ -58,7 +58,7 @@
                             {{product.fecha_prestamo}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Fecha de devolución</span>
+                            <span class="p-column-title">Fecha estimada de devolución</span>
                             {{product.fecha_devolucion}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
@@ -81,41 +81,57 @@
 
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" [header]="getHeaderTitle()" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
-                <div class="field">
-                    <label for="ID_responsable">Cédula de a quien se presta</label>
-                    <input type="text" pInputText id="ID_responsable" [(ngModel)]="product.cedulaPresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.cedulaPresta}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.cedulaPresta">ID del responsable es requerido.</small>
-                </div>
-                <div class="field">
-                    <label for="Nombre_responsable">Nombre completo de a quien se presta</label>
-                    <input type="text" pInputText id="Nombre_responsable" [(ngModel)]="product.nombrePresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.nombrePresta}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.nombrePresta">Nombre del responsable es requerido.</small>
-                </div>
-                <div class="field">
-                    <label for="Cargo_responsable">Cargo de a quien se presta</label>
-                    <input type="text" pInputText id="Cargo_responsable" [(ngModel)]="product.cargoPresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.cargoPresta}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.cargoPresta">Cargo del responsable es requerido.</small>
-                </div>
-                <div class="field">
-                    <label for="Fecha_asignacion">Fecha de préstamo</label>
-                    <input type="date" pInputText id="Fecha_asignacion" [(ngModel)]="product.fecha_prestamo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_prestamo}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fecha_prestamo">Fecha de asignación es requerida.</small>
-                </div>
-                <div class="field">
-                    <label for="Observaciones">Observaciones</label>
-                    <textarea id="Observaciones" pInputTextarea [(ngModel)]="product.observacionesPresta" required rows="3" cols="20"></textarea>
-                </div>
-                <div class="field">
-                    <label for="Fecha_devolucion">Fecha de devolución</label>
-                    <input type="date" pInputText id="Fecha_devolucion" [(ngModel)]="product.fecha_devolucion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_devolucion}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fecha_devolucion">Fecha de devolución es requerida.</small>
-                </div>
+                <ng-container *ngIf="!formularioDevolucion; else devolucionForm">
+                    <!-- Formulario de préstamo -->
+                    <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
+                    <div class="field">
+                        <label for="ID_responsable">Cédula de a quien se presta</label>
+                        <input type="text" pInputText id="ID_responsable" [(ngModel)]="product.cedulaPresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.cedulaPresta}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.cedulaPresta">ID del responsable es requerido.</small>
+                    </div>
+                    <div class="field">
+                        <label for="Nombre_responsable">Nombre completo de a quien se presta</label>
+                        <input type="text" pInputText id="Nombre_responsable" [(ngModel)]="product.nombrePresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.nombrePresta}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.nombrePresta">Nombre del responsable es requerido.</small>
+                    </div>
+                    <div class="field">
+                        <label for="Cargo_responsable">Cargo de a quien se presta</label>
+                        <input type="text" pInputText id="Cargo_responsable" [(ngModel)]="product.cargoPresta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.cargoPresta}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.cargoPresta">Cargo del responsable es requerido.</small>
+                    </div>
+                    <div class="field">
+                        <label for="Fecha_asignacion">Fecha de préstamo</label>
+                        <input type="date" pInputText id="Fecha_asignacion" [(ngModel)]="product.fecha_prestamo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_prestamo}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fecha_prestamo">Fecha de asignación es requerida.</small>
+                    </div>
+                    <div class="field">
+                        <label for="Observaciones">Observaciones</label>
+                        <textarea id="Observaciones" pInputTextarea [(ngModel)]="product.observacionesPresta" required rows="3" cols="20"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="Fecha_devolucion">Fecha estimada de devolución</label>
+                        <input type="date" pInputText id="Fecha_devolucion" [(ngModel)]="product.fecha_devolucion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_devolucion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fecha_devolucion">Fecha de devolución es requerida.</small>
+                    </div>
+                </ng-container>
+                <ng-template #devolucionForm>
+                    <!-- Formulario de devolución -->
+                    <div class="field">
+                        <label for="Observaciones_devolucion">Observaciones de devolución</label>
+                        <textarea id="Observaciones_devolucion" pInputTextarea [(ngModel)]="product.observacionesDevolucion" required rows="3" cols="20"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="Fecha_devolucion_final">Fecha de devolución</label>
+                        <input type="date" pInputText id="FechaDevolucion_final" [(ngModel)]="product.fechaDevolucion_final" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.fecha_devolucion_final}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.fechaDevolucion_final">Fecha de devolución es requerida.</small>
+                    </div>
+                </ng-template>
+                
             </ng-template>
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
                 <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
             </ng-template>
-        </p-dialog>
+        </p-dialog>        
     </div>
 </div>

@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/demo/service/product.service';
 })
 export class CrudComponent implements OnInit {
 
+    
     currentStep: number = 1;
 
     totalSteps: number = 6;
@@ -54,22 +55,24 @@ export class CrudComponent implements OnInit {
 
     constructor(private productService: ProductService, private messageService: MessageService) { }
 
+
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
 
         this.cols = [
+            { field: 'code', header: 'Code' },
             { field: 'product', header: 'Product' },
             { field: 'price', header: 'Price' },
             { field: 'category', header: 'Category' },
             { field: 'rating', header: 'Reviews' },
-            { field: 'garantiaStatus', header: 'Garantía del proveedor' },
+            { field: 'garantiaProveedor', header: 'Garantía del proveedor' },
             { field: 'insuranceStatus', header: 'Insurance' },
             { field: 'inventoryGroup', header: 'InventoryGroup' }           
         ];
 
         this.statusesGarantia = [
-            { label: 'ACTIVE', value: 'active' },
-            { label: 'INACTIVE', value: 'inactive' }
+            { label: 'ACTIVO', value: 'activo' },
+            { label: 'INACTIVO', value: 'inactivo' }
         ];
 
         this.tipos = [
@@ -217,7 +220,7 @@ export class CrudComponent implements OnInit {
                 this.product.code = this.createId();
                 this.product.image = 'product-placeholder.svg';
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'ACTIVE';
+                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'ACTIVO';
                 this.products.push(this.product);
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
             }

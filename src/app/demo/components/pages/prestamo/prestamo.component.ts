@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/demo/service/product.service';
 })
 export class PrestamoComponent implements OnInit {
 
+    formularioDevolucion: boolean = false;
+
     productDialog: boolean = false;
 
     products: Product[] = [];
@@ -55,7 +57,9 @@ export class PrestamoComponent implements OnInit {
     editProduct(product: Product) {
         this.product = { ...product };
         this.productDialog = true;
+        this.formularioDevolucion = product.estadoPresta === 'PRESTADO';
     }
+    
 
     deleteProduct(product: Product) {
         this.products = this.products.filter(val => val.id !== product.id);
@@ -68,26 +72,54 @@ export class PrestamoComponent implements OnInit {
         this.submitted = false;
     }
 
+    resetForm() {
+        this.product.cedulaPresta = "";
+        this.product.nombrePresta = "";
+        this.product.cargoPresta = "";
+        this.product.fecha_prestamo = "";
+        this.product.observacionesPresta = "";
+        this.product.fecha_devolucion = "";
+        this.product.observacionesDevolucion = "";
+        this.product.fechaDevolucion_final = "";
+    }
+    
+
     saveProduct() {
         this.submitted = true;
-
-        if (this.product.name.trim()) {
-            if (this.product.id) {
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-            } else {
-                this.product.id = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+    
+        if (this.formularioDevolucion) {
+            // Validar los campos del formulario de devolución
+            if (this.product.fechaDevolucion_final && this.product.observacionesDevolucion) {
+                this.product.estadoPresta = 'DISPONIBLE';
+                this.resetForm(); // Limpiar el formulario
+                this.updateProduct();
             }
-
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
+        } else {
+            // Validar los campos del formulario de préstamo
+            if (this.product.cedulaPresta && this.product.nombrePresta && this.product.cargoPresta && this.product.fecha_prestamo && this.product.fecha_devolucion) {
+                this.product.estadoPresta = 'PRESTADO';
+                this.updateProduct();
+            }
         }
     }
-
+    
+    updateProduct() {
+        if (this.product.id) {
+            this.products[this.findIndexById(this.product.id)] = this.product;
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+        } else {
+            this.product.id = this.createId();
+            this.product.image = 'product-placeholder.svg';
+            this.products.push(this.product);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+        }
+    
+        this.products = [...this.products];
+        this.productDialog = false;
+        this.product = {};
+    }
+    
+    
     findIndexById(id: string): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {

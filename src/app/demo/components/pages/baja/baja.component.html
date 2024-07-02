@@ -45,29 +45,40 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-ban" class="p-button-rounded p-button-danger mr-2" *ngIf="product.estado !== 'De baja'" (click)="deleteProduct(product)"></button>
                                 <button pButton pRipple icon="pi pi-file" class="p-button-rounded p-button-info mr-2" (click)="showDetails(product)" *ngIf="product.estado === 'De baja'"></button>
-
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
+
+            <p-dialog [(visible)]="detailsDialog" header="Detalles del Producto" [modal]="true" [style]="{width:'650px'}">
+                <div *ngIf="selectedProduct">
+                    <p>Nombre: {{ selectedProduct.name }}</p>
+                    <p>Estado: {{ selectedProduct.estado }}</p>
+                    <p>Autorizado por: {{ selectedProduct.autorizado_por }}</p>
+                    <p>Justificación: {{ selectedProduct.justificacion }}</p>
+                    <p>Fecha dada de baja: {{ selectedProduct.fechaBaja }}</p>              
+                    <!-- Agrega más detalles según tus necesidades -->
+                </div>
+                <button pButton type="button" label="Cerrar" (click)="detailsDialog = false"></button>
+            </p-dialog>
+
         </div>
     </div>
 
-    
-    <p-dialog [(visible)]="deleteProductDialog" header="Confirmar baja del ítem {{ selectedProducts[0]?.name }} (ID: {{ selectedProducts[0]?.id }})" [modal]="true" [style]="{width:'650px'}" >
+    <p-dialog [(visible)]="deleteProductDialog" header="Confirmar baja del ítem {{ selectedProducts[0]?.name }} (ID: {{ selectedProducts[0]?.id }})" [modal]="true" [style]="{width:'650px'}">
         <div class="p-fluid p-formgrid p-grid">
             <div class="field">
                 <label for="estado">Estado</label>
                 <p-dropdown id="estado" [options]="estadoOptions" [(ngModel)]="selectedEstado" optionLabel="label" placeholder="Seleccionar estado"></p-dropdown>
             </div>
             <div class="field">
-                <label for="responsable">Autorizado por</label>
-                <input type="text" id="responsable" pInputText [(ngModel)]="responsable">
+                <label for="autorizado_por">Autorizado por</label>
+                <input type="text" id="autorizado_por" pInputText [(ngModel)]="autorizado_por">
             </div>
             <div class="field">
-                <label for="descripcion">Justificación</label>
-                <textarea id="descripcion" pInputTextarea [(ngModel)]="descripcion" rows="5"></textarea>
+                <label for="justificacion">Justificación</label>
+                <textarea id="justificacion" pInputTextarea [(ngModel)]="justificacion" rows="5"></textarea>
             </div>
             <div class="field" *ngIf="selectedEstado && selectedEstado.value === 'De baja'">
                 <label for="fechaBaja">Fecha de baja</label>

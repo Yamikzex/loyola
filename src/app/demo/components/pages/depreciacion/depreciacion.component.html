@@ -37,7 +37,7 @@
                         <td>
                             <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
                         </td>
-                        <td>{{ product.price }}</td>
+                        <td>{{ product.price | number:'1.0-0' }}</td> <!-- Aquí se aplica el formato sin símbolo de divisa -->
                         <td>{{product.useful_life}}</td>
                         <td>{{product.category}}</td>
                         <td>{{product.fecha_adquisicion}}</td>

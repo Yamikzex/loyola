@@ -18,9 +18,13 @@ export class BajaComponent implements OnInit {
 
     // Propiedades para el formulario de baja
     selectedEstado: any;
-    responsable: string;
-    descripcion: string;
+    autorizado_por: string;
+    justificacion: string;
     fechaBaja: string; // Nueva propiedad para la fecha de baja
+
+    // Propiedades para mostrar detalles del producto
+    selectedProduct: Product;
+    detailsDialog: boolean = false;
 
     estadoOptions: any[] = [
         { label: 'Disponible', value: 'Disponible' },
@@ -45,21 +49,23 @@ export class BajaComponent implements OnInit {
 
     deleteProduct(product: Product) {
         this.selectedEstado = this.estadoOptions.find(option => option.value === 'De baja');
-        this.responsable = '';
-        this.descripcion = '';
+        this.autorizado_por = '';
+        this.justificacion = '';
         this.fechaBaja = ''; // Limpiamos la fecha de baja al abrir el diálogo
         this.selectedProducts = [product];
         this.deleteProductDialog = true;
     }
 
     confirmDeleteProduct() {
-        if (this.selectedEstado && this.responsable && this.descripcion) {
+        if (this.selectedEstado && this.autorizado_por && this.justificacion) {
             this.selectedProducts.forEach(product => {
                 product.estado = this.selectedEstado.value; // Asignamos el estado al producto
+                product.autorizado_por = this.autorizado_por;
+                product.justificacion = this.justificacion;
                 if (product.estado === 'De baja') {
-                    product.fecha_baja = this.fechaBaja; // Asignamos la fecha de baja al producto si está marcado como 'de baja'
+                    product.fechaBaja = this.fechaBaja; // Asignamos la fecha de baja al producto si está marcado como 'de baja'
                 } else {
-                    product.fecha_baja = ''; // Limpiamos la fecha de baja si no está marcado como 'de baja'
+                    product.fechaBaja = ''; // Limpiamos la fecha de baja si no está marcado como 'de baja'
                 }
                 // Aquí podrías implementar la lógica para actualizar el estado en el JSON original
                 // En este ejemplo, solo actualizamos la lista local
@@ -74,8 +80,8 @@ export class BajaComponent implements OnInit {
 
     resetForm() {
         this.selectedEstado = null;
-        this.responsable = '';
-        this.descripcion = '';
+        this.autorizado_por = '';
+        this.justificacion = '';
         this.fechaBaja = ''; // Limpiamos la fecha de baja en el reset del formulario
     }
 
@@ -84,8 +90,7 @@ export class BajaComponent implements OnInit {
     }
 
     showDetails(product: Product) {
-        console.log(product); // Muestra los detalles del producto dado de baja
-        // Aquí podrías implementar la lógica para mostrar los detalles del producto dado de baja
-        // Por ejemplo, podrías abrir un diálogo o navegar a una nueva página para mostrar los detalles
+        this.selectedProduct = product;
+        this.detailsDialog = true;
     }
 }

@@ -11,7 +11,6 @@ import { ProductService } from 'src/app/demo/service/product.service';
 })
 export class PolizaComponent implements OnInit {
 
-        
     poliza: any = {
         numero: '',
         fechaExpedicion: null,
@@ -26,7 +25,7 @@ export class PolizaComponent implements OnInit {
     cubrimientosOptions = [
         { label: 'Alta Tensión', value: 'alta_tension' },
         { label: 'Robo', value: 'robo' },
-        { label: 'Inundación', value: 'inundacion' }    ,
+        { label: 'Inundación', value: 'inundacion' },
         { label: 'Terremoto', value: 'terremoto' },
         { label: 'Asonada', value: 'asonada' }
     ];
@@ -36,10 +35,36 @@ export class PolizaComponent implements OnInit {
     constructor(private productService: ProductService, private messageService: MessageService) {}
 
     ngOnInit() {
-        this.productService.getProducts().then(data => this.products = data);
+        this.productService.getProducts().then(data => {
+            this.products = data;
+        });
     }
 
     savePoliza() {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Poliza saved successfully', life: 3000 });
+        this.products.forEach(product => {
+            if (product.selected) {
+                product.insuranceStatus = 'Con póliza';
+                product.nombrePoliza = this.poliza.aseguradora.nombre;
+                product.numeroPoliza = this.poliza.numero;
+                product.cubierto = true;
+            }
+        });
+
+        this.productService.updateProducts(this.products);
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Producto añadido a una Póliza exitosamente', life: 3000 });
+    }
+
+    removePoliza() {
+        this.products.forEach(product => {
+            if (product.selected) {
+                product.insuranceStatus = 'Sin póliza';
+                product.nombrePoliza = '';
+                product.numeroPoliza = '';
+                product.cubierto = false;
+            }
+        });
+
+        this.productService.updateProducts(this.products);
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Producto eliminado de una Póliza exitosamente', life: 3000 });
     }
 }

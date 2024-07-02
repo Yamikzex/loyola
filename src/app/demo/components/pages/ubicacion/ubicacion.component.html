@@ -4,35 +4,32 @@
             <div>
                 <div class="field" style="margin-bottom: 1.5rem;">
                     <label for="No_inventario" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Número de inventario</label>
-                    <input type="text" pInputText id="No_inventario" [(ngModel)]="product.noInventario" required style="width: 100%; box-sizing: border-box;" />
+                    <input type="text" pInputText id="No_inventario" [(ngModel)]="noInventario" required style="width: 100%; box-sizing: border-box;" />
                 </div>
-                <div class="field" style="margin-bottom: 1.5rem;">
+                <div class="field">
                     <section>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15863.080002990808!2d-75.569394!3d6.2939287!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442f2bec3972d7%3A0x57c2dde37b5a2510!2sInstituci%C3%B3n%20Educativa%20Colegio%20Loyola%20para%20la%20Ciencia%20y%20la%20Innovaci%C3%B3n!5e0!3m2!1ses-419!2sco!4v1712708117619!5m2!1ses-419!2sco"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15863.080002990808!2d-75.569394!3d6.2939287!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442f2bec3972d7%3A0x57c2dde37b5a2510!2sInstituci%C3%B3n%20Educativa%20Colegio%20Loyola%20para%20la%20Ciencia%20y%20la%20Innovaci%C3%B3n!5e0!3m2!1ses-419!2sco!4v1712708117619!5m2!1ses-419!2sco" width="1400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </section>
+                    <br>
+                    <label for="Direccion">Dirección</label>
+                    <input type="text" pInputText id="Direccion" [(ngModel)]="product.direccion" readonly [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.direccion}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.direccion">Dirección es requerida.</small>
                 </div>
                 <div class="field" style="margin-bottom: 1.5rem;">
-                    <label for="Direccion" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Dirección</label>
-                    <input type="text" pInputText id="Direccion" [(ngModel)]="product.direccion" required autofocus style="width: 100%; box-sizing: border-box;" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.direccion" style="color: red;">Dirección es requerida.</small>
+                    <label for="Sede">Sede</label>
+                    <input type="text" pInputText id="Sede" [(ngModel)]="product.sede" readonly [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.sede}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.sede">Sede es requerida.</small>
                 </div>
-                <div class="field" style="margin-bottom: 1.5rem;">
-                    <label for="Sede" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Sede</label>
-                    <input type="text" pInputText id="Sede" [(ngModel)]="product.sede" required autofocus style="width: 100%; box-sizing: border-box;" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.sede" style="color: red;">Sede es requerida.</small>
+                <div class="field">
+                    <label for="Salon">Salón u oficina</label>
+                    <input type="text" pInputText id="Salon" [(ngModel)]="product.oficina" readonly [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.salon}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.oficina">Salón u oficina son requeridos.</small>
                 </div>
-                <div class="field" style="margin-bottom: 1.5rem;">
-                    <label for="Salon" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Salón u oficina</label>
-                    <input type="text" pInputText id="Salon" [(ngModel)]="product.salon" required autofocus style="width: 100%; box-sizing: border-box;" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.salon" style="color: red;">Salón u oficina son requeridos.</small>
-                </div>
-            </div>
 
-            <div class="p-col-12 p-text-center">
-                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="save()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
-                <button pButton pRipple label="Buscar" icon="pi pi-search" class="p-button-text" (click)="search()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
-            </div>
+                <div class="p-col-12 p-text-center">
+                    <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="save()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
+                    <button pButton pRipple label="Buscar" icon="pi pi-search" class="p-button-text" (click)="search()" style="background-color: #007ad9; color: white; margin: 0.5rem;"></button>
+                </div>
         </div>
     </div>
 </div>

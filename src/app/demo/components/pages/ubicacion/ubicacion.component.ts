@@ -4,7 +4,6 @@ import { ProductService } from 'src/app/demo/service/product.service'; // Asegú
 
 
 @Component({
-  selector: 'app-info-placa',
   templateUrl: './ubicacion.component.html',
   providers: [MessageService]
 })
@@ -47,10 +46,9 @@ export class UbicacionComponent implements OnInit {
       console.log('Product found:', this.product);
     } else {
       console.log('Product not found');
-      // Opcional: mostrar un mensaje de error al usuario
     }
   }
-  
+
   findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.products.length; i++) {
