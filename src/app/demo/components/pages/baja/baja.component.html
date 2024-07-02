@@ -40,7 +40,14 @@
                         <td>{{product.marca}}</td>
                         <td>{{product.category}}</td>
                         <td>{{product.fecha_adquisicion}}</td>
-                        <td>{{product.estado}}</td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Estado</span>
+                            <span [ngClass]="{
+                                'estado-baja': product.estado === 'De baja',
+                                'estado-disponible': product.estado === 'Disponible'
+                            }">{{product.estado}}</span>
+                        </td>
+                        
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-ban" class="p-button-rounded p-button-danger mr-2" *ngIf="product.estado !== 'De baja'" (click)="deleteProduct(product)"></button>

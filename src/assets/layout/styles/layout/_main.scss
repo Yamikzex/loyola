@@ -20,6 +20,88 @@
     letter-spacing: .3px;
 }
 
+
+
+.estado-robado {
+    /* Estilos para productos robados */
+    background-color: red; /* Por ejemplo, color de texto naranja */
+    color: white;
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+.estado-desaparecido {
+    /* Estilos para productos robados */
+    background-color: orange; /* Por ejemplo, color de texto naranja */
+    color: white;
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.estado-danado {
+    background-color: #ffcc00; /* Amarillo */
+    color: black; /* Color de texto negro */
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.estado-reparacion {
+    background-color: #3399ff; /* Azul */
+    color: white; /* Color de texto blanco */
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.estado-revision {
+    background-color: #9933ff; /* Morado */
+    color: white; /* Color de texto blanco */
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.estado-prestado {
+    background-color: #66cc00; /* Verde */
+    color: white; /* Color de texto blanco */
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.estado-baja {
+    background-color: #ff3333; /* Rojo */
+    color: white; /* Color de texto blanco */
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+/* Define estilos para otros estados según sea necesario */
+
 * {
     box-sizing: border-box;
 }

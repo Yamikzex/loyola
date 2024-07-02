@@ -43,7 +43,20 @@
                         <td>{{product.category}}</td>
                         <td>{{product.responsable}}</td>
                         <td>{{product.fecha_ultimo_cambio}}</td>
-                        <td>{{product.estado_actual}}</td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Estado Actual</span>
+                            <span [ngClass]="{
+                                'estado-prestado': product.estado_actual === 'Prestado',
+                                'estado-disponible': product.estado_actual === 'Disponible',
+                                'estado-robado': product.estado_actual === 'Robado',
+                                'estado-desaparecido': product.estado_actual === 'Desaparecido',
+                                'estado-danado': product.estado_actual === 'Dañado',
+                                'estado-reparacion': product.estado_actual === 'En reparación',
+                                'estado-revision': product.estado_actual === 'En revisión',
+                                'estado-prestado': product.estado_actual === 'Prestado',
+                            }">{{product.estado_actual}}</span>
+                        </td>
+                        
                         <td>{{product.ubicacion}}</td>
                         <td>
                             <div class="flex">
